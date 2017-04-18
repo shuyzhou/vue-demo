@@ -74,5 +74,15 @@ var app = new Vue({
         allDone: function (val) {
             this.markAll = val;
         }
+    },
+    created: function () {
+        var store = localStorage.getItem('todos');
+        if (store) {
+            this.items = JSON.parse(store);
+        }
+    },
+    updated: function () {
+        var newstore = JSON.stringify(this.items);
+        localStorage.setItem('todos',newstore);
     }
 })
